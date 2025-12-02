@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Cowan Prints - Order Form</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <style>
+  .audio-top-right {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+  width: 200px; /* make it smaller */
+}
+
+    body {
+      font-family: "Smooch Sans", sans-serif;
+      background: linear-gradient(135deg, #ffc9e3, #ffe0b3);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* ===== Header ===== */
+    h1 {
+      text-align: center;
+      color: #1C46B4;
+      font-size: 2.5em;
+      margin-top: 30px;
+      letter-spacing: 1px;
+      position: relative;
+    }
+
+    h1::after {
+      content: " ✨";
+      font-size: 1.2em;
+    }
+
+    /* ===== Menu Styles ===== */
+    .menu-button {
+      display: none;
+      background: #1C46B4;
+      color: white;
+      border: none;
+      font-size: 1.5em;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px auto;
+    }
+
+    .menu {
+      background: #ffb6d9;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .menu a {
+      display: inline-block;
+      color: #1C46B4;
+      text-decoration: none;
+      padding: 8px 15px;
+      font-size: 1.1em;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 6px;
+    }
+
+    .menu a:hover {
+      background: #fff;
+      color: #d63384;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    @media (max-width: 700px) {
+      .menu-button {
+        display: block;
+        text-align: center;
+      }
+      .menu {
+        display: none;
+        flex-direction: column;
+      }
+      #menu-toggle:checked + .menu-button + .menu {
+        display: flex;
+      }
+    }
+
+    /* ===== Form Styling ===== */
+    .form-container {
+      background: white;
+      max-width: 550px;
+      margin: 30px auto;
+      padding: 25px 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    /* CSS Shape */
+    .form-container::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: #1C46B4;
+      border-radius: 50%;
+      top: -30px;
+      left: -30px;
+      z-index: -1;
+    }
+
+    form label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      color: #1C46B4;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #1C46B4;
+      border-radius: 8px;
+      font-size: 1em;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #d63384;
+      box-shadow: 0 0 5px rgba(214, 51, 132, 0.4);
+      outline: none;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    .options label {
+      font-weight: normal;
+      color: #1C46B4;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      background: #1C46B4;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+      margin-right: 10px;
+      font-size: 1em;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    input[type="submit"]:hover,
+    input[type="reset"]:hover {
+      background: #b02a6d;
+      transform: scale(1.05);
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    /* Feature detection */
+    @supports (--css: variables) {
+      .form-container {
+        border: 2px dashed #d63384;
+      }
+    }
+
+    #thankyou {
+      display: none;
+      color: #d63384;
+      font-weight: bold;
+      margin-top: 10px;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    footer {
+      text-align: center;
+      margin: 30px 0;
+      color: #1C46B4;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cowan Prints Order Form</h1>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-button">☰ Menu</label>
+
+  <div class="menu">
+    <a href="WebsiteCowan.html">Home</a>
+    <a href="aboutus.xhtml">About Us</a>
+    <a href="ourproducts.xhtml">Products</a>
+    <a href="ourprinter.xhtml">Printer</a>
+    <a href="shopping.xhtml">Shopping</a>
+    <a href="https://weather.com/weather/tenday/l/Byrdstown+Tennessee+38549">Weather</a>
+  </div>
+
+  <div class="form-container">
+    <form id="orderForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" name="Name" required>
+
+      <label for="email">Email Address:</label>
+      <input type="email" id="email" name="Email" required>
+
+      <label>Choose Your Prints:</label>
+      <div class="options">
+        <input type="checkbox" id="dino" name="Prints" value="Dinosaur">
+        <label for="dino">Dinosaur</label>
+        <input type="checkbox" id="panda" name="Prints" value="Panda">
+        <label for="panda">Panda</label>
+        <input type="checkbox" id="toothless" name="Prints" value="Toothless">
+        <label for="toothless">Toothless</label>
+      </div>
+
+      <label>Delivery Option:</label>
+      <div class="options">
+        <input type="radio" id="pickup" name="Delivery" value="Pickup" required>
+        <label for="pickup">Pickup</label>
+        <input type="radio" id="ship" name="Delivery" value="Ship">
+        <label for="ship">Ship</label>
+      </div>
+
+      <label for="quantity">Quantity:</label>
+      <select id="quantity" name="Quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4+">4+</option>
+      </select>
+
+      <label for="notes">Special Requests:</label>
+      <textarea id="notes" name="Notes" rows="4" placeholder="Enter any details here..."></textarea>
+
+      <div>
+        <input type="submit" value="Submit Order">
+        <input type="reset" value="Clear Form">
+      </div>
+      <div id="thankyou">Thank you for your order!</div>
+    </form>
+  </div>
+
+  <footer>
+    Contact us: brittanycantrell12@yahoo.com<br>
+    931-704-4992
+  </footer>
+
+  <script src="orderForm.js"></script>
+
+<video controls width="480" poster="images/poster.jpg" aria-label="Sample demonstration video">
+    <source src="../images/video.mp4" type="video/mp4">
+    <source src="images/video.webm" type="video/webm">
+    <source src="images/video.ogv" type="video/ogg">
+</video>
+<audio id="sound" class="audio-top-right" controls>
+    <source src="../images/sound.wav" type="audio/wav">
+</audio>
+</body>
+</html>
